@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  /* This completely replaces the old tailwind.config.js */
+  --color-knchr-navy: #0F172A;
+  --color-knchr-gold: #F59E0B;
+  --color-knchr-light: #F8FAFC;
+  --color-knchr-white: #FFFFFF;
+  
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-knchr-light);
+    color: #020617; /* This is the hex for slate-950 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+/* ACCESSIBILITY GLOBAL CLASSES */
+.a11y-grayscale { filter: grayscale(100%) !important; }
+.a11y-contrast { filter: contrast(150%) !important; }
+.a11y-negative { filter: invert(100%) hue-rotate(180deg) !important; background-color: #111 !important; }
+.a11y-bw { filter: grayscale(100%) contrast(150%) !important; }
+
+/* Forces all text to a dyslexia-friendly fallback if active */
+.a11y-dyslexic, .a11y-dyslexic * { 
+  font-family: "Comic Sans MS", "OpenDyslexic", sans-serif !important; 
+}
+
+/* Link Modifications */
+.a11y-underline-links a { 
+  text-decoration: underline !important; 
+  text-underline-offset: 4px !important; 
+}
+.a11y-highlight-links a { 
+  background-color: #FFD700 !important; 
+  color: #000 !important; 
+  font-weight: 800 !important; 
+}
