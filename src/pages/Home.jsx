@@ -1,12 +1,22 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
-import { Edit3, FileText, BookOpen, CalendarCheck } from 'lucide-react';
-import TopBar from '../components/TopBar';
-import Navbar from '../components/Navbar';
+import { useState, useEffect } from 'react';
+import { FaEdit, FaFileAlt, FaBookOpen, FaCalendarCheck } from 'react-icons/fa'; 
+
+// GLOBAL LAYOUT SECTIONS
+
+
 import FlipCard from '../components/FlipCard';
 
+// NEWLY SEPARATED COMPONENT PARTS
+import HeadOffice from '../components/HeadOffice';
+import NewsAndPublications from '../components/NewsAndPublications';
+import OurPartners from '../components/OurPartners';
+
+// BRAND STATIC EMBEDDED GRAPHICS
+import harambeeLogo from '../assets/harambee-logo.webp';
+import knchrLogo from '../assets/knchr-logo.webp';
+
 const Home = () => {
-  // --- BACKGROUND SLIDER LOGIC ---
+  // --- BACKGROUND HERO CAROUSEL ENGINE ---
   const backgroundImages = [
     "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=1920",
     "https://images.unsplash.com/photo-1529156069898-49953eb1b5e4?auto=format&fit=crop&q=80&w=1920",
@@ -22,7 +32,7 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [backgroundImages.length]);
 
-  // --- TYPING EFFECT LOGIC ---
+  // --- INTERACTIVE HEADING TYPEWRITER SIMULATION ---
   const phrases = [
     "RESTORING DIGNITY.", 
     "UPHOLDING HUMAN RIGHTS.", 
@@ -50,19 +60,22 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, [text, isDeleting, phraseIndex]);
 
+  // --- CORE CARD DATA SCHEMA ---
   const flipCards = [
-    { id: 1, title: "Make A Complaint", icon: Edit3, desc: "Submit your grievances securely through our online portal." },
-    { id: 2, title: "Access To Information", icon: FileText, desc: "Request and access official public documentation." },
-    { id: 3, title: "Library", icon: BookOpen, desc: "Browse our extensive human rights resources and archives." },
-    { id: 4, title: "Register", icon: CalendarCheck, desc: "Sign up for upcoming public participation events." },
+    { id: 1, title: "Make A Complaint", icon: FaEdit, desc: "Submit your grievances securely through our online portal." },
+    { id: 2, title: "Access To Information", icon: FaFileAlt, desc: "Request and access official public documentation." },
+    { id: 3, title: "Library", icon: FaBookOpen, desc: "Browse our extensive human rights resources and archives." },
+    { id: 4, title: "Register", icon: FaCalendarCheck, desc: "Sign up for upcoming public participation events." },
   ];
 
   return (
-    <div className="min-h-screen bg-knchr-light flex flex-col font-sans">
-      <TopBar />
-      <Navbar />
+    <div className="min-h-screen bg-knchr-light flex flex-col font-sans overflow-x-hidden">
+      
+     
+      
+   
 
-      {/* HERO SECTION WITH SLIDER */}
+      {/* BLOCK 3: Animated Slider Hero Frame */}
       <div className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden">
         {backgroundImages.map((img, index) => (
           <div
@@ -77,47 +90,45 @@ const Home = () => {
         ))}
 
         <div className="relative z-20 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center h-full text-center pb-20">
-          {/* Logo Placeholders */}
-          <div className="absolute left-4 top-1/4 hidden lg:flex flex-col items-center opacity-80">
-            <div className="w-32 h-32 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center text-white text-xs text-center p-2">
-              [Harambee Logo Placeholder]
-            </div>
+          
+          {/* Absolute Overlaid Identity Graphics */}
+          <div className="absolute left-4 lg:left-12 top-1/4 hidden md:flex flex-col items-center z-30">
+            <img src={harambeeLogo} alt="Harambee Logo" className="w-32 lg:w-40 h-auto object-contain drop-shadow-2xl transition-transform hover:scale-105" />
           </div>
           
-          <div className="absolute right-4 top-1/4 hidden lg:flex flex-col items-center opacity-80">
-            <div className="w-32 h-32 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center text-white text-xs text-center p-2">
-              [KNCHR Logo Placeholder]
-            </div>
+          <div className="absolute right-4 lg:right-12 top-1/4 hidden md:flex flex-col items-center z-30">
+            <img src={knchrLogo} alt="KNCHR Logo" className="w-32 lg:w-40 h-auto object-contain drop-shadow-2xl transition-transform hover:scale-105" />
           </div>
 
-          {/* Typing Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 min-h-[80px]">
+          {/* Main Title Heading output */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 min-h-[80px] drop-shadow-lg">
             {text}
             <span className="animate-pulse text-knchr-gold">|</span>
           </h1>
 
-          {/* Contact Details */}
-          <div className="flex flex-wrap justify-center gap-6 mt-4 text-sm md:text-base text-slate-200 bg-slate-950/40 backdrop-blur-md px-8 py-4 rounded-full border border-white/10">
+          {/* Quick Info Contact Sub-Pill */}
+          <div className="flex flex-wrap justify-center gap-6 mt-4 text-sm md:text-base text-slate-200 bg-slate-950/50 backdrop-blur-md px-8 py-4 rounded-full border border-white/20 shadow-xl hidden md:flex">
             <p><span className="text-knchr-gold font-semibold">Email:</span> reparations@knchr.org</p>
             <p><span className="text-knchr-gold font-semibold">Toll Free:</span> 0800 720 627</p>
-            <p><span className="text-knchr-gold font-semibold">SMS:</span> 22359</p>
           </div>
         </div>
       </div>
 
-      {/* OVERLAPPING FLIP CARDS CONTAINER */}
+      {/* BLOCK 4: Negative-Margin Intersecting 3D Interactive Cards */}
       <div className="relative z-30 max-w-7xl mx-auto px-4 w-full -mt-24 mb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {flipCards.map((card) => (
-            <FlipCard 
-              key={card.id}
-              title={card.title}
-              icon={card.icon}
-              desc={card.desc}
-            />
+            <FlipCard key={card.id} title={card.title} icon={card.icon} desc={card.desc} />
           ))}
         </div>
       </div>
+
+      {/* BLOCK 5: Extracted Modern Head Office Panel Block Component */}
+      <HeadOffice />
+
+      {/* BLOCK 6: High-Fidelity Bento Grid Media & Reports Integration Segment */}
+      <NewsAndPublications />
+<OurPartners />
     </div>
   );
 };
