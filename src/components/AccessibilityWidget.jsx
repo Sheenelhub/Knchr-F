@@ -76,25 +76,24 @@ const AccessibilityWidget = () => {
   ];
 
   return (
-    <div className="fixed top-24 right-0 z-[100] flex flex-col items-end font-sans">
-      
-      {/* Floating Trigger Button */}
+    <>
+      {/* Floating Trigger Button (Decoupled from the sidebar so it stays in place) */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`bg-orange-500 text-white p-3 rounded-l-xl shadow-2xl transition-transform hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300 ${isOpen ? 'translate-x-full opacity-0' : 'translate-x-0'}`}
+        className={`fixed top-[20%] right-0 z-[9990] bg-orange-500 text-white p-3 rounded-l-xl shadow-2xl transition-transform hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300 ${isOpen ? 'translate-x-full opacity-0' : 'translate-x-0'}`}
         aria-label="Open Accessibility Options"
       >
         <FaWheelchair size={30} />
       </button>
 
-      {/* The Sidebar Panel */}
+      {/* The Sidebar Panel (Using 100dvh guarantees it fits the screen exactly without scrolling) */}
       <div 
-        className={`fixed top-0 right-0 h-full w-[80px] bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-in-out flex flex-col z-[105] ${
+        className={`fixed top-0 right-0 h-[100dvh] w-[80px] bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-in-out flex flex-col z-[9999] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Top Header Panel Icon */}
-        <div className="bg-orange-500 text-white p-4 flex justify-center items-center shadow-md shrink-0">
+        <div className="bg-orange-500 text-white p-4 flex justify-center items-center shadow-md shrink-0 h-[80px]">
           <FaWheelchair size={32} />
         </div>
 
@@ -105,7 +104,6 @@ const AccessibilityWidget = () => {
               key={idx} 
               className="relative group flex items-center justify-center w-full"
             >
-              {/* Interactive Button */}
               <button
                 onClick={tool.action}
                 aria-label={tool.label}
@@ -120,18 +118,16 @@ const AccessibilityWidget = () => {
               </button>
 
               {/* Instant Tailwind Tooltip Popout */}
-              <div className="absolute right-[75px] bg-gray-900 text-white text-xs font-bold px-3 py-2 rounded shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 ease-in-out z-[120]">
+              <div className="absolute right-[75px] bg-gray-900 text-white text-xs font-bold px-3 py-2 rounded shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 ease-in-out z-[10000]">
                 {tool.label}
-                {/* Pointer Arrow */}
                 <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-[5px] border-transparent border-l-gray-900"></div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Actions (Reset & Close) */}
-        <div className="flex flex-col shrink-0 border-t border-gray-100">
-          {/* Reset Button Container */}
+        {/* Bottom Actions (Reset & Close) - Forced to stay visible at the bottom */}
+        <div className="flex flex-col shrink-0 border-t border-gray-100 bg-white">
           <div className="relative group w-full flex items-center justify-center">
             <button 
               onClick={resetAll}
@@ -140,22 +136,21 @@ const AccessibilityWidget = () => {
             >
               <FaUndo size={22} />
             </button>
-            <div className="absolute right-[85px] bg-gray-900 text-white text-xs font-bold px-3 py-2 rounded shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 ease-in-out z-[120]">
+            <div className="absolute right-[85px] bg-gray-900 text-white text-xs font-bold px-3 py-2 rounded shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 ease-in-out z-[10000]">
               Reset All
               <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-[5px] border-transparent border-l-gray-900"></div>
             </div>
           </div>
 
-          {/* Close Button Container */}
           <div className="relative group w-full flex items-center justify-center">
             <button 
               onClick={() => setIsOpen(false)}
               aria-label="Close Panel"
-              className="w-full bg-orange-600 text-white p-4 flex justify-center items-center hover:bg-orange-700 transition-colors focus:outline-none"
+              className="w-full bg-orange-600 text-white p-4 flex justify-center items-center hover:bg-orange-700 transition-colors focus:outline-none pb-safe"
             >
               <FaTimes size={22} />
             </button>
-            <div className="absolute right-[85px] bg-gray-900 text-white text-xs font-bold px-3 py-2 rounded shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 ease-in-out z-[120]">
+            <div className="absolute right-[85px] bg-gray-900 text-white text-xs font-bold px-3 py-2 rounded shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 ease-in-out z-[10000]">
               Close Panel
               <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-[5px] border-transparent border-l-gray-900"></div>
             </div>
@@ -163,7 +158,7 @@ const AccessibilityWidget = () => {
         </div>
 
       </div>
-    </div>
+    </>
   );
 };
 
