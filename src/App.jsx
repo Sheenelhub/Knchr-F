@@ -20,6 +20,9 @@ import Navbar from './components/Navbar';
 import AccessibilityWidget from './components/AccessibilityWidget';
 import FloatingContact from './components/FloatingContact';
 
+
+import Footer from './components/Footer';
+
 const ComingSoonArticle = () => (
   <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 text-center px-6">
     <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Article Being Formatted</h2>
@@ -81,13 +84,16 @@ function App() {
       <header className="sticky top-0 z-[80] w-full flex flex-col shadow-xl">
         <TopBar />
         <Navbar />
+       
       </header>
+        
       
       {/* Dynamic Page Content */}
       <main>
         {renderPage()}
+       
       </main>
-      
+      <Footer/>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import FlipCard from '../components/FlipCard';
 // NEWLY SEPARATED COMPONENT PARTS
 import HeadOffice from '../components/HeadOffice';
 import NewsAndPublications from '../components/NewsAndPublications';
+import FocalAreas from '../components/FocalAreas';
 import OurPartners from '../components/OurPartners';
 
 // BRAND STATIC EMBEDDED GRAPHICS
@@ -128,6 +129,7 @@ const Home = () => {
 
       {/* BLOCK 6: High-Fidelity Bento Grid Media & Reports Integration Segment */}
       <NewsAndPublications />
+      <FocalAreas/>
 <OurPartners />
     </div>
   );
